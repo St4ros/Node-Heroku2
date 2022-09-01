@@ -57,10 +57,8 @@ app.post("/registro", (req,res)=>{
           const balores = [req.body.nombre1,req.body.apellido1,req.body.gmail,req.body.fechanaci1,req.body.password1,'a','c'];
           const reg = await pool.query(Registro_bd,balores);
           console.log('si inserto la tabla');
-          res.send("usuario registrado con exito");
           await pool.end();
       } catch (e) {
-          res.send("El correo ya existe");
           console.log('El correo ya existe');
           await pool.end();
       }
