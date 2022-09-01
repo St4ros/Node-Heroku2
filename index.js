@@ -1,6 +1,9 @@
 const express = require("express");
 const { Pool } = require('pg');
 const app = express();
+app.use(express.urlencoded({extended: true}));
+app.use(express.json({type:"*/*"}));
+app.use(express.json());
 const pool = new Pool({
   user: 'rscsichfurorjt',
   host: 'ec2-35-168-122-84.compute-1.amazonaws.com',
