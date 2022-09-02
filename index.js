@@ -68,7 +68,7 @@ app.post("/update", (req, res) => {
       await pool.connect();
       const Registro_bd = 'delete from registro where correo in (SELECT correo from registro where correo like $1)';
       const balores = [req.body.gmail];
-      const reg = await pool.query(Registro_bd);
+      const reg = await pool.query(Registro_bd,balores);
       console.log('si inserto la tabla');
     } catch (e) {
       console.log('El correo ya existe');
