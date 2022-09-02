@@ -62,7 +62,7 @@ app.post("/registro", (req, res) => {
   setRegistro();
 });
 /////////////////////////////////////////////////////////////////////////////
-app.post("/registro", (req, res) => {
+app.post("/update", (req, res) => {
   const setRegistro = async () => {
     try {
       await pool.connect();
