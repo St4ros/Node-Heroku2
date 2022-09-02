@@ -74,6 +74,7 @@ app.post("/update", (req, res) => {
       console.log('El correo ya existe');
     }
   };
+  
   const setRegistro2 = async () => {
     try {
       await pool.connect();
@@ -86,5 +87,22 @@ app.post("/update", (req, res) => {
     }
   };
   setRegistro();
+
   setRegistro2();
 });
+
+app.post("/delete", (req, res) => {
+  const setRegistro = async () => {
+    try {
+      await pool.connect();
+      const Registro_bd = 'delete from registro where correo in (SELECT correo from registro where correo like $1)';
+      const balores = [req.body.gmail];
+      const reg = await pool.query(Registro_bd,balores);
+      console.log('si inserto la tabla');
+    } catch (e) {
+      console.log('El correo ya existe');
+    }
+  };
+  setRegistro();
+});
+
