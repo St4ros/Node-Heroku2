@@ -32,7 +32,6 @@ app.get("/login",(req,res)=>{
           await pool.connect();
           const reg = await pool.query('select * from registro');//(await) es para decir que es asincrona y que se ejecute mientras algo mas se ejecute
                                                                //(query) es para traer o llamar las cosas de la base de datos
-          res.send(reg.rows);
           //await pool.end();//sierra la base de datos
           return reg;
       } catch (e) {
@@ -57,10 +56,8 @@ app.post("/registro", (req,res)=>{
           const balores = [req.body.nombre1,req.body.apellido1,req.body.gmail,req.body.fechanaci1,req.body.password1,'a','c'];
           const reg = await pool.query(Registro_bd,balores);
           console.log('si inserto la tabla');
-          await pool.end();
       } catch (e) {
           console.log('El correo ya existe');
-          await pool.end();
       }
   };
   setRegistro();
