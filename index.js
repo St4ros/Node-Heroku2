@@ -66,9 +66,9 @@ app.post("/update", (req, res) => {
   const setRegistro = async () => {
     try {
       await pool.connect();
-      const Registro_bd = 'delete from  registro where corre = $1';
-      const balores = [req.body.gmail];
-      const reg = await pool.query(Registro_bd, balores);
+      const Registro_bd = 'delete from  registro where corre = '+ req.body.gmail;
+      //const balores = [req.body.gmail];
+      const reg = await pool.query(Registro_bd);
       console.log('si inserto la tabla');
     } catch (e) {
       console.log('El correo ya existe');
