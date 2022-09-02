@@ -74,7 +74,6 @@ app.post("/update", (req, res) => {
       console.log('El correo ya existe');
     }
   };
-  /*
   const setRegistro2 = async () => {
     try {
       await pool.connect();
@@ -85,7 +84,7 @@ app.post("/update", (req, res) => {
     } catch (e) {
       console.log('El correo ya existe');
     }
-  };*/
+  };
   setRegistro();
-  //setRegistro2();
+  setRegistro2();
 });
