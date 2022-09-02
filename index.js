@@ -27,17 +27,12 @@ app.listen(process.env.PORT || 5000);
 
 
 app.get("/login",(req,res)=>{    
-  const pool = new Pool(config);//es la maquina donde se ejecuta la base de datos
-  pool.connect();
-  
   const getRegistro = async () =>{
       try {
           await pool.connect();
           const reg = await pool.query('select * from registro');//(await) es para decir que es asincrona y que se ejecute mientras algo mas se ejecute
                                                                //(query) es para traer o llamar las cosas de la base de datos
           res.send(reg.rows);
-          await pool.end();//sierra la base de datos
-          return reg;
       } catch (e) {
           console.log(e);
       }
