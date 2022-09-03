@@ -68,16 +68,15 @@ app.post("/update", (req, res) => {
       await pool.connect();
       const Registro_bd = 'delete from registro where correo in (SELECT correo from registro where correo like $1)';
       const balores = [req.body.gmail];
-      const reg = await pool.query(Registro_bd,balores);
+      const reg = await pool.query(Registro_bd, balores);
       console.log('si inserto la tabla');
     } catch (e) {
       console.log('El correo ya existe');
     }
   };
-  
+
   const setRegistro2 = async () => {
     try {
-      await pool.connect();
       const Registro_bd = 'insert into registro(nombre,apellido,correo,fecha,contraseña,formulario,formulario2) VALUES($1,$2,$3,$4,$5,$6,$7)';
       const balores = [req.body.nombre1, req.body.apellido1, req.body.gmail, req.body.fechanaci1, req.body.password1, 'a', 'c'];
       const reg = await pool.query(Registro_bd, balores);
@@ -87,8 +86,9 @@ app.post("/update", (req, res) => {
     }
   };
   setRegistro();
-
-  setRegistro2();
+  setTimeout(() => {
+    setRegistro2();
+  }, 1000);
 });
 
 app.post("/delete", (req, res) => {
@@ -97,7 +97,7 @@ app.post("/delete", (req, res) => {
       await pool.connect();
       const Registro_bd = 'delete from registro where correo in (SELECT correo from registro where correo like $1)';
       const balores = [req.body.gmail];
-      const reg = await pool.query(Registro_bd,balores);
+      const reg = await pool.query(Registro_bd, balores);
       console.log('si inserto la tabla');
     } catch (e) {
       console.log('El correo ya existe');
