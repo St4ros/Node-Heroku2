@@ -133,8 +133,8 @@ app.post("/compras", (req, res) => {
   const setRegistroc = async () => {
     try {
       await pool.connect();
-      const Registro_bd = 'insert into pagosafiliado(nombrecompleto,precio,compra,correo) VALUES($1,$2,$3,$4)';
-      const balores = [req.body.nomcompl, req.body.precio, req.body.compra, req.body.correo];
+      const Registro_bd = 'insert into pagosafiliado(nombrecompleto,precio,compra,correo,fecha) VALUES($1,$2,$3,$4,$5)';
+      const balores = [req.body.nomcompl, req.body.precio, req.body.compra, req.body.correo,req.body.fecha];
       const reg = await pool.query(Registro_bd, balores);
       console.log('si inserto la tabla');
     } catch (e) {
